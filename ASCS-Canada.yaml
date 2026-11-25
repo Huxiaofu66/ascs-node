@@ -1,0 +1,38 @@
+proxies:
+  - name: ASCS-Canada
+    type: vless
+    server: 2001:470:1f2f:16f::323
+    port: 443
+    uuid: 36446d8d-ed9a-4340-a5c7-fc1e7b2a8478
+    flow: xtls-rprx-vision
+    tls: true
+    servername: www.microsoft.com
+    reality-opts:
+      public-key: JbpUWa47SGXUFMc4x5K_N6APEzBtl2p6uaJTOs5LKBg
+      short-id: 048e48e0
+    client-fingerprint: chrome
+    network: tcp
+    udp: true
+  - name: ASCS-CF
+    type: vless
+    server: pics-spoke-chart-winner.trycloudflare.com
+    port: 443
+    uuid: 36446d8d-ed9a-4340-a5c7-fc1e7b2a8478
+    tls: true
+    servername: pics-spoke-chart-winner.trycloudflare.com
+    network: ws
+    ws-opts:
+      path: /vless
+    client-fingerprint: chrome
+    udp: true
+
+proxy-groups:
+  - name: PROXY
+    type: select
+    proxies:
+      - ASCS-CF
+      - ASCS-Canada
+      - DIRECT
+
+rules:
+  - MATCH,PROXY
