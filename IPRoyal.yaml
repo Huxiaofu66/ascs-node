@@ -1,0 +1,20 @@
+port: 7890
+socks-port: 7891
+allow-lan: false
+mode: rule
+log-level: info
+proxies:
+  - name: IPRoyal-US
+    type: http
+    server: 161.77.96.55
+    port: 12323
+    username: 14ac6224b9cfb
+    password: "8441bc2ebf"
+proxy-groups:
+  - name: PROXY
+    type: select
+    proxies:
+      - IPRoyal-US
+      - DIRECT
+rules:
+  - MATCH,PROXY
